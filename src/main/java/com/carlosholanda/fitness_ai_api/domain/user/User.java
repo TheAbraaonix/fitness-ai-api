@@ -1,33 +1,16 @@
 package com.carlosholanda.fitness_ai_api.domain.user;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
-@Table(name="users")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     // Personal info (mandatory)
-    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
     // Personal info (optional)
@@ -36,30 +19,137 @@ public class User {
     private Double height;
     private Integer availableDaysPerWeek;
 
-    @Enumerated(EnumType.STRING)
     private FitnessGoal fitnessGoal;
 
-    @Enumerated(EnumType.STRING)
     private FitnessLevel fitnessLevel;
 
     // User Control
-    @Column(nullable = false)
     private boolean active = true;
 
-    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+    public User() {
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
+    public User(UUID id, String name, String email, String password, Integer age, Double weight, Double height, Integer availableDaysPerWeek, FitnessGoal fitnessGoal, FitnessLevel fitnessLevel, boolean active, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.availableDaysPerWeek = availableDaysPerWeek;
+        this.fitnessGoal = fitnessGoal;
+        this.fitnessLevel = fitnessLevel;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public Integer getAvailableDaysPerWeek() {
+        return availableDaysPerWeek;
+    }
+
+    public FitnessGoal getFitnessGoal() {
+        return fitnessGoal;
+    }
+
+    public FitnessLevel getFitnessLevel() {
+        return fitnessLevel;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public void setAvailableDaysPerWeek(Integer availableDaysPerWeek) {
+        this.availableDaysPerWeek = availableDaysPerWeek;
+    }
+
+    public void setFitnessGoal(FitnessGoal fitnessGoal) {
+        this.fitnessGoal = fitnessGoal;
+    }
+
+    public void setFitnessLevel(FitnessLevel fitnessLevel) {
+        this.fitnessLevel = fitnessLevel;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

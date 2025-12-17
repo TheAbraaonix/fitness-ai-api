@@ -1,17 +1,18 @@
-package com.carlosholanda.fitness_ai_api.service;
+package com.carlosholanda.fitness_ai_api.application.service;
 
+import com.carlosholanda.fitness_ai_api.application.usecases.UserUseCases;
 import com.carlosholanda.fitness_ai_api.domain.user.User;
-import com.carlosholanda.fitness_ai_api.repositories.UserRepository;
+import com.carlosholanda.fitness_ai_api.domain.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserUseCases {
     private final UserRepository repository;
 
-    public UserService (UserRepository repository) {
+    public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -56,12 +57,10 @@ public class UserService {
         existingUser.setFitnessGoal(updatedUser.getFitnessGoal());
         existingUser.setFitnessLevel(updatedUser.getFitnessLevel());
 
-        return repository.save(existingUser);
+        return repository.update(existingUser);
     }
 
     public void delete(UUID id) {
-        User user = getById(id);
-        user.setActive(false);
-        repository.save(user);
+        repository.delete(id);
     }
 }
