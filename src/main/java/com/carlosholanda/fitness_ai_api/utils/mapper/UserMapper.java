@@ -1,9 +1,9 @@
 package com.carlosholanda.fitness_ai_api.utils.mapper;
 
 import com.carlosholanda.fitness_ai_api.domain.user.User;
-import com.carlosholanda.fitness_ai_api.adapters.inboud.dto.userDto.CreateUserRequest;
-import com.carlosholanda.fitness_ai_api.adapters.inboud.dto.userDto.UpdateUserRequest;
-import com.carlosholanda.fitness_ai_api.adapters.inboud.dto.userDto.UserResponse;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.CreateUserRequest;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UpdateUserRequest;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UserResponse;
 import org.springframework.stereotype.Component;
 
 @Component

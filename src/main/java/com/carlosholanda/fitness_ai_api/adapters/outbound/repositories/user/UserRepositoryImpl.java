@@ -1,4 +1,4 @@
-package com.carlosholanda.fitness_ai_api.adapters.outbound.repositories;
+package com.carlosholanda.fitness_ai_api.adapters.outbound.repositories.user;
 
 import com.carlosholanda.fitness_ai_api.adapters.outbound.entities.JpaUserEntity;
 import com.carlosholanda.fitness_ai_api.domain.user.User;

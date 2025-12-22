@@ -1,9 +1,9 @@
-package com.carlosholanda.fitness_ai_api.adapters.inboud.controller;
+package com.carlosholanda.fitness_ai_api.adapters.inbound.controller;
 
 import com.carlosholanda.fitness_ai_api.domain.user.User;
-import com.carlosholanda.fitness_ai_api.adapters.inboud.dto.userDto.CreateUserRequest;
-import com.carlosholanda.fitness_ai_api.adapters.inboud.dto.userDto.UpdateUserRequest;
-import com.carlosholanda.fitness_ai_api.adapters.inboud.dto.userDto.UserResponse;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.CreateUserRequest;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UpdateUserRequest;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UserResponse;
 import com.carlosholanda.fitness_ai_api.utils.mapper.UserMapper;
 import com.carlosholanda.fitness_ai_api.application.usecases.UserUseCases;
 import jakarta.validation.Valid;
