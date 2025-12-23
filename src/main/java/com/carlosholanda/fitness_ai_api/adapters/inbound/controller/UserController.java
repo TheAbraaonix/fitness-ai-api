@@ -66,7 +66,7 @@ public class UserController {
     ) {
         User user = userUseCases.getById(id);
         mapper.updateEntityFromRequest(user, request);
-        User updatedUser = userUseCases.updateUser(id, user);
+        User updatedUser = userUseCases.update(id, user);
         UserResponse response = mapper.toResponse(updatedUser);
         return ResponseEntity.ok(response);
     }

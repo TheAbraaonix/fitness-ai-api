@@ -10,6 +10,6 @@ public interface UserUseCases {
     List<User> getAll();
     User getById(UUID id);
     User getByEmail(String email);
-    User updateUser(UUID id, User updateUser);
+    User update(UUID id, User user);
     void delete(UUID id);
 }

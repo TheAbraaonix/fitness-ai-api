@@ -38,7 +38,8 @@ public class UserServiceImpl implements UserUseCases {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o e-mail: " + email));
     }
 
-    public User updateUser(UUID id, User updatedUser) {
+    @Override
+    public User update(UUID id, User updatedUser) {
         User existingUser = getById(id);
 
         if (!existingUser.getEmail().equals(updatedUser.getEmail())) {
