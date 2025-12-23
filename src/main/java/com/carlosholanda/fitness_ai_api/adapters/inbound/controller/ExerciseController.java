@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/exercises")
@@ -48,7 +47,7 @@ public class ExerciseController {
 
     // GET /api/exercises/{id} - Buscar por ID
     @GetMapping("/{id}")
-    public ResponseEntity<ExerciseResponse> getById(@PathVariable UUID id) {
+    public ResponseEntity<ExerciseResponse> getById(@PathVariable Long id) {
         Exercise exercise = exerciseUseCases.getById(id);
         ExerciseResponse response = mapper.toResponse(exercise);
         return ResponseEntity.ok(response);
@@ -100,7 +99,7 @@ public class ExerciseController {
     // PUT /api/exercises/{id} - Atualizar exercício
     @PutMapping("/{id}")
     public ResponseEntity<ExerciseResponse> update(
-            @PathVariable UUID id,
+            @PathVariable Long id,
             @Valid @RequestBody UpdateExerciseRequest request
     ) {
         Exercise exercise = exerciseUseCases.getById(id);
@@ -112,7 +111,7 @@ public class ExerciseController {
 
     // DELETE /api/exercises/{id} - Deletar (soft delete)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         exerciseUseCases.delete(id);
         return ResponseEntity.noContent().build();
     }

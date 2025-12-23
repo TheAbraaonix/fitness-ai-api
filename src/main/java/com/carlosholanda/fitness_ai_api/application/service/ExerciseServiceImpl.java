@@ -8,7 +8,6 @@ import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseUseCases {
@@ -24,7 +23,7 @@ public class ExerciseServiceImpl implements ExerciseUseCases {
     }
 
     @Override
-    public Exercise update(UUID id, Exercise exercise) {
+    public Exercise update(Long id, Exercise exercise) {
         Exercise existingExercise = getById(id);
 
         existingExercise.setName(exercise.getName());
@@ -37,12 +36,12 @@ public class ExerciseServiceImpl implements ExerciseUseCases {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(Long id) {
         repository.delete(id);
     }
 
     @Override
-    public Exercise getById(UUID id) {
+    public Exercise getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Exercício não encontrado com o ID: " + id));
     }

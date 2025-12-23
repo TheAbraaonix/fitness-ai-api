@@ -7,10 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface JpaExerciseRepository extends JpaRepository<JpaExerciseEntity, UUID> {
+public interface JpaExerciseRepository extends JpaRepository<JpaExerciseEntity, Long> {
     List<JpaExerciseEntity> findByMuscleGroup(MuscleGroup muscleGroup);
     List<JpaExerciseEntity> findByDifficulty(Difficulty difficulty);
     List<JpaExerciseEntity> findByMuscleGroupAndDifficulty(MuscleGroup muscleGroup, Difficulty difficulty);

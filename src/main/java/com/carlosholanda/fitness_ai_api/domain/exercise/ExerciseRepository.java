@@ -4,14 +4,13 @@ import com.carlosholanda.fitness_ai_api.adapters.outbound.entities.JpaExerciseEn
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface ExerciseRepository {
     Exercise save(Exercise exercise);
     Exercise update(Exercise exercise);
-    void delete(UUID id);
+    void delete(Long id);
     List<Exercise> findAll();
-    Optional<Exercise> findById(UUID id);
+    Optional<Exercise> findById(Long id);
     List<Exercise> findByMuscleGroup(MuscleGroup muscleGroup);
     List<Exercise> findByDifficulty(Difficulty difficulty);
     List<Exercise> findByMuscleGroupAndDifficulty(MuscleGroup muscleGroup, Difficulty difficulty);

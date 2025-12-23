@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -39,7 +38,7 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(Long id) {
         JpaExerciseEntity jpaExerciseEntity = this.jpaExerciseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Exercise not found with ID: " + id));
         jpaExerciseEntity.setActive(false);
@@ -57,7 +56,7 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
     }
 
     @Override
-    public Optional<Exercise> findById(UUID id) {
+    public Optional<Exercise> findById(Long id) {
         Optional<JpaExerciseEntity> jpaExerciseEntity = this.jpaExerciseRepository.findById(id);
         return jpaExerciseEntity.map(entity -> new Exercise(entity.getId(), entity.getName(),
                 entity.getMuscleGroup(), entity.getInstructions(), entity.getDifficulty(), entity.getEquipmentNeeded(),

@@ -1,10 +1,9 @@
 package com.carlosholanda.fitness_ai_api.domain.exercise;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Exercise {
-    private UUID id;
+    private Long id;
     private String name;
     private MuscleGroup muscleGroup;
     private String instructions;
@@ -17,7 +16,7 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(UUID id, String name, MuscleGroup muscleGroup, String instructions, Difficulty difficulty, String equipmentNeeded, boolean isActive, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Exercise(Long id, String name, MuscleGroup muscleGroup, String instructions, Difficulty difficulty, String equipmentNeeded, boolean isActive, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.muscleGroup = muscleGroup;
@@ -29,11 +28,11 @@ public class Exercise {
         this.updatedAt = updatedAt;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
