@@ -1,10 +1,14 @@
 package com.carlosholanda.fitness_ai_api.application.service;
 
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.CreateExerciseRequest;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.ExerciseResponse;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.UpdateExerciseRequest;
 import com.carlosholanda.fitness_ai_api.application.usecases.ExerciseUseCases;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Exercise;
 import com.carlosholanda.fitness_ai_api.domain.exercise.ExerciseRepository;
 import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
+import com.carlosholanda.fitness_ai_api.utils.mapper.ExerciseMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,27 +16,28 @@ import java.util.List;
 @Service
 public class ExerciseServiceImpl implements ExerciseUseCases {
     private final ExerciseRepository repository;
+    private final ExerciseMapper mapper;
 
-    public ExerciseServiceImpl(ExerciseRepository repository) {
+    public ExerciseServiceImpl(ExerciseRepository repository, ExerciseMapper mapper) {
         this.repository = repository;
+        this.mapper = mapper;
     }
 
     @Override
-    public Exercise create(Exercise exercise) {
-        return repository.save(exercise);
+    public ExerciseResponse create(CreateExerciseRequest request) {
+        Exercise exercise = mapper.toEntity(request);
+        Exercise savedExercise = repository.save(exercise);
+        return mapper.toResponse(savedExercise);
     }
 
     @Override
-    public Exercise update(Long id, Exercise exercise) {
-        Exercise existingExercise = getById(id);
+    public ExerciseResponse update(Long id, UpdateExerciseRequest request) {
+        Exercise existingExercise = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Exercício não encontrado com o ID: " + id));
 
-        existingExercise.setName(exercise.getName());
-        existingExercise.setMuscleGroup(exercise.getMuscleGroup());
-        existingExercise.setInstructions(exercise.getInstructions());
-        existingExercise.setDifficulty(exercise.getDifficulty());
-        existingExercise.setEquipmentNeeded(exercise.getEquipmentNeeded());
-
-        return repository.update(existingExercise);
+        mapper.updateEntityFromRequest(request, existingExercise);
+        Exercise updatedExercise = repository.update(existingExercise);
+        return mapper.toResponse(updatedExercise);
     }
 
     @Override
@@ -41,37 +46,48 @@ public class ExerciseServiceImpl implements ExerciseUseCases {
     }
 
     @Override
-    public Exercise getById(Long id) {
-        return repository.findById(id)
+    public ExerciseResponse getById(Long id) {
+        Exercise exercise = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Exercício não encontrado com o ID: " + id));
+        return mapper.toResponse(exercise);
     }
 
     @Override
-    public List<Exercise> getAll() {
-        return repository.findAll();
+    public List<ExerciseResponse> getAll() {
+        return repository.findAll().stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 
     @Override
-    public List<Exercise> getByMuscleGroup(MuscleGroup muscleGroup) {
-        return repository.findByMuscleGroup(muscleGroup);
+    public List<ExerciseResponse> getByMuscleGroup(MuscleGroup muscleGroup) {
+        return repository.findByMuscleGroup(muscleGroup).stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 
     @Override
-    public List<Exercise> getByDifficulty(Difficulty difficulty) {
-        return repository.findByDifficulty(difficulty);
+    public List<ExerciseResponse> getByDifficulty(Difficulty difficulty) {
+        return repository.findByDifficulty(difficulty).stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 
     @Override
-    public List<Exercise> getByMuscleGroupAndDifficulty(MuscleGroup muscleGroup, Difficulty difficulty) {
-        return repository.findByMuscleGroupAndDifficulty(muscleGroup, difficulty);
+    public List<ExerciseResponse> getByMuscleGroupAndDifficulty(MuscleGroup muscleGroup, Difficulty difficulty) {
+        return repository.findByMuscleGroupAndDifficulty(muscleGroup, difficulty).stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 
     @Override
-    public List<Exercise> searchByName(String name) {
+    public List<ExerciseResponse> searchByName(String name) {
         if(name == null || name.trim().isEmpty()) {
             throw new RuntimeException("Nome da busca não pode ser vazio");
         }
 
-        return repository.findByNameContainingIgnoreCase(name);
+        return repository.findByNameContainingIgnoreCase(name).stream()
+                .map(mapper::toResponse)
+                .toList();
     }
 }
