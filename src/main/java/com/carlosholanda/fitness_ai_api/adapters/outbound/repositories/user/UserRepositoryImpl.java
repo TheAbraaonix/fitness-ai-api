@@ -3,39 +3,35 @@ package com.carlosholanda.fitness_ai_api.adapters.outbound.repositories.user;
 import com.carlosholanda.fitness_ai_api.adapters.outbound.entities.JpaUserEntity;
 import com.carlosholanda.fitness_ai_api.domain.user.User;
 import com.carlosholanda.fitness_ai_api.domain.user.UserRepository;
+import com.carlosholanda.fitness_ai_api.utils.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaUserRepository;
+    private final UserMapper mapper;
 
-    public UserRepositoryImpl(JpaUserRepository jpaUserRepository) {
+    public UserRepositoryImpl(JpaUserRepository jpaUserRepository, UserMapper mapper) {
         this.jpaUserRepository = jpaUserRepository;
+        this.mapper = mapper;
     }
 
     @Override
     public User save(User user) {
-        JpaUserEntity userEntity = new JpaUserEntity(user);
-        this.jpaUserRepository.save(userEntity);
-        return new User(userEntity.getId(),
-                userEntity.getName(), userEntity.getEmail(), userEntity.getPassword(), userEntity.getAge(), userEntity.getWeight(),
-                userEntity.getHeight(), userEntity.getAvailableDaysPerWeek(), userEntity.getFitnessGoal(), userEntity.getFitnessLevel(),
-                userEntity.isActive(), userEntity.getCreatedAt(), userEntity.getUpdatedAt());
+        JpaUserEntity userEntity = mapper.toJpaEntity(user);
+        JpaUserEntity savedEntity = this.jpaUserRepository.save(userEntity);
+        return mapper.toDomain(savedEntity);
     }
 
     @Override
     public User update(User user) {
-        JpaUserEntity userEntity = new JpaUserEntity(user);
+        JpaUserEntity userEntity = mapper.toJpaEntity(user);
         JpaUserEntity updatedEntity = this.jpaUserRepository.save(userEntity);
-        return new User(updatedEntity.getId(),
-                updatedEntity.getName(), updatedEntity.getEmail(), updatedEntity.getPassword(), updatedEntity.getAge(), updatedEntity.getWeight(),
-                updatedEntity.getHeight(), updatedEntity.getAvailableDaysPerWeek(), updatedEntity.getFitnessGoal(), updatedEntity.getFitnessLevel(),
-                updatedEntity.isActive(), updatedEntity.getCreatedAt(), updatedEntity.getUpdatedAt());
+        return mapper.toDomain(updatedEntity);
     }
 
     @Override
@@ -48,31 +44,22 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Optional<User> findById(UUID id) {
-        Optional<JpaUserEntity> userEntity = this.jpaUserRepository.findById(id);
-        return userEntity.map(entity -> new User(entity.getId(),
-                entity.getName(), entity.getEmail(), entity.getPassword(), entity.getAge(), entity.getWeight(),
-                entity.getHeight(), entity.getAvailableDaysPerWeek(), entity.getFitnessGoal(), entity.getFitnessLevel(),
-                entity.isActive(), entity.getCreatedAt(), entity.getUpdatedAt()));
+        return this.jpaUserRepository.findById(id)
+                .map(mapper::toDomain);
     }
 
     @Override
     public List<User> findAll() {
         return this.jpaUserRepository.findAll()
                 .stream()
-                .map(entity -> new User(entity.getId(),
-                entity.getName(), entity.getEmail(), entity.getPassword(), entity.getAge(), entity.getWeight(),
-                entity.getHeight(), entity.getAvailableDaysPerWeek(), entity.getFitnessGoal(), entity.getFitnessLevel(),
-                entity.isActive(), entity.getCreatedAt(), entity.getUpdatedAt()))
-                .collect(Collectors.toList());
+                .map(mapper::toDomain)
+                .toList();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        Optional<JpaUserEntity> userEntity = this.jpaUserRepository.findByEmail(email);
-        return userEntity.map(entity -> new User(entity.getId(),
-                entity.getName(), entity.getEmail(), entity.getPassword(), entity.getAge(), entity.getWeight(),
-                entity.getHeight(), entity.getAvailableDaysPerWeek(), entity.getFitnessGoal(), entity.getFitnessLevel(),
-                entity.isActive(), entity.getCreatedAt(), entity.getUpdatedAt()));
+        return this.jpaUserRepository.findByEmail(email)
+                .map(mapper::toDomain);
     }
 
     @Override
