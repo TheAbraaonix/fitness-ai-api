@@ -1,7 +1,5 @@
 package com.carlosholanda.fitness_ai_api.domain.exercise;
 
-import com.carlosholanda.fitness_ai_api.adapters.outbound.entities.JpaExerciseEntity;
-
 import java.util.List;
 import java.util.Optional;
 
