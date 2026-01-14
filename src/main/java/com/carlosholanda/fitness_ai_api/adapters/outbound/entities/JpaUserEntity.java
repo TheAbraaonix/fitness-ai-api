@@ -3,6 +3,8 @@ package com.carlosholanda.fitness_ai_api.adapters.outbound.entities;
 import com.carlosholanda.fitness_ai_api.domain.user.FitnessGoal;
 import com.carlosholanda.fitness_ai_api.domain.user.FitnessLevel;
 import com.carlosholanda.fitness_ai_api.domain.user.User;
+import com.carlosholanda.fitness_ai_api.domain.user.UserRole;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +34,10 @@ public class JpaUserEntity {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRole role = UserRole.USER;
 
     // Personal info (optional)
     private Integer age;
@@ -71,6 +77,7 @@ public class JpaUserEntity {
         this.name = user.getName();
         this.email = user.getEmail();
         this.password = user.getPassword();
+        this.role = user.getRole();
         this.age = user.getAge();
         this.weight = user.getWeight();
         this.height = user.getHeight();

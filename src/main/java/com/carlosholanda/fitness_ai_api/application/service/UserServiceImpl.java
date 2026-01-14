@@ -1,6 +1,6 @@
 package com.carlosholanda.fitness_ai_api.application.service;
 
-import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.CreateUserRequest;
+import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth.CreateUserRequest;
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UpdateUserRequest;
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UserResponse;
 import com.carlosholanda.fitness_ai_api.application.usecases.UserUseCases;

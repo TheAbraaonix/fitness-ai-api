@@ -9,6 +9,7 @@ import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class ExerciseController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ExerciseResponse> create(@Valid @RequestBody CreateExerciseRequest request) {
         ExerciseResponse response = exerciseUseCases.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -68,6 +70,7 @@ public class ExerciseController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ExerciseResponse> update(
             @PathVariable Long id,
             @Valid @RequestBody UpdateExerciseRequest request
@@ -77,6 +80,7 @@ public class ExerciseController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         exerciseUseCases.delete(id);
         return ResponseEntity.noContent().build();

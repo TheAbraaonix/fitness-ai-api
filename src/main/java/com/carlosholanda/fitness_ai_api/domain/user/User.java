@@ -13,6 +13,8 @@ public class User {
 
     private String password;
 
+    private UserRole role = UserRole.USER;
+
     // Personal info (optional)
     private Integer age;
     private Double weight;
@@ -33,11 +35,12 @@ public class User {
     public User() {
     }
 
-    public User(UUID id, String name, String email, String password, Integer age, Double weight, Double height, Integer availableDaysPerWeek, FitnessGoal fitnessGoal, FitnessLevel fitnessLevel, boolean active, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(UUID id, String name, String email, String password, UserRole role, Integer age, Double weight, Double height, Integer availableDaysPerWeek, FitnessGoal fitnessGoal, FitnessLevel fitnessLevel, boolean active, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = role;
         this.age = age;
         this.weight = weight;
         this.height = height;
@@ -63,6 +66,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public UserRole getRole() {
+        return role;
     }
 
     public Integer getAge() {
@@ -115,6 +122,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     public void setAge(Integer age) {

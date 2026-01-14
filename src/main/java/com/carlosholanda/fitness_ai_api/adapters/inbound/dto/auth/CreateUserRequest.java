@@ -1,4 +1,4 @@
-package com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user;
+package com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth;
 
 import com.carlosholanda.fitness_ai_api.domain.user.FitnessGoal;
 import com.carlosholanda.fitness_ai_api.domain.user.FitnessLevel;
