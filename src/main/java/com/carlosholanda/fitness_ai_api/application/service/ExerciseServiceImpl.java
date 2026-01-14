@@ -8,6 +8,7 @@ import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Exercise;
 import com.carlosholanda.fitness_ai_api.domain.exercise.ExerciseRepository;
 import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.ExerciseNotFoundException;
 import com.carlosholanda.fitness_ai_api.utils.mapper.ExerciseMapper;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class ExerciseServiceImpl implements ExerciseUseCases {
     @Override
     public ExerciseResponse update(Long id, UpdateExerciseRequest request) {
         Exercise existingExercise = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Exercício não encontrado com o ID: " + id));
+                .orElseThrow(() -> new ExerciseNotFoundException(id));
 
         mapper.updateEntityFromRequest(request, existingExercise);
         Exercise updatedExercise = repository.update(existingExercise);
@@ -48,7 +49,7 @@ public class ExerciseServiceImpl implements ExerciseUseCases {
     @Override
     public ExerciseResponse getById(Long id) {
         Exercise exercise = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Exercício não encontrado com o ID: " + id));
+                .orElseThrow(() -> new ExerciseNotFoundException(id));
         return mapper.toResponse(exercise);
     }
 
@@ -83,7 +84,7 @@ public class ExerciseServiceImpl implements ExerciseUseCases {
     @Override
     public List<ExerciseResponse> searchByName(String name) {
         if(name == null || name.trim().isEmpty()) {
-            throw new RuntimeException("Nome da busca não pode ser vazio");
+            throw new IllegalArgumentException("Nome da busca não pode ser vazio");
         }
 
         return repository.findByNameContainingIgnoreCase(name).stream()

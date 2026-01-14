@@ -12,6 +12,8 @@ import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth.LoginResponse;
 import com.carlosholanda.fitness_ai_api.application.usecases.AuthUseCases;
 import com.carlosholanda.fitness_ai_api.domain.user.User;
 import com.carlosholanda.fitness_ai_api.domain.user.UserRepository;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.InvalidCredentialsException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.UserAlreadyExistsException;
 import com.carlosholanda.fitness_ai_api.infrastructure.security.jwt.JwtTokenProvider;
 
 @Service
@@ -33,7 +35,7 @@ public class AuthServiceImpl implements AuthUseCases {
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.email())
-            .orElseThrow(() -> new RuntimeException("User not found with the email: " + loginRequest.email()));
+            .orElseThrow(() -> new InvalidCredentialsException());
         
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
@@ -54,7 +56,7 @@ public class AuthServiceImpl implements AuthUseCases {
     @Override
     public LoginResponse register(CreateUserRequest createUserRequest) {
         if(userRepository.existsByEmail(createUserRequest.email())) {
-            throw new RuntimeException("Email already in use: " + createUserRequest.email());
+            throw new UserAlreadyExistsException(createUserRequest.email());
         }
 
         User user = new User();
