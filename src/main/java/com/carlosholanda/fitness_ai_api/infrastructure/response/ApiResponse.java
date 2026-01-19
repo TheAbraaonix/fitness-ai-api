@@ -6,13 +6,13 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 /**
- * Wrapper padrão para todas as respostas de sucesso da API.
- * Garante formato consistente em todos os endpoints.
+ * Standard wrapper for all successful API responses.
+ * Ensures consistent format across all endpoints.
  * 
- * @param <T> Tipo dos dados retornados (UserResponse, ExerciseResponse, etc.)
+ * @param <T> Type of returned data (UserResponse, ExerciseResponse, etc.)
  */
 @Getter
-@JsonInclude(JsonInclude.Include.NON_NULL)  // Não serializa campos nulos
+@JsonInclude(JsonInclude.Include.NON_NULL)  // Don't serialize null fields
 public class ApiResponse<T> {
     
     private final boolean success;
@@ -22,7 +22,7 @@ public class ApiResponse<T> {
     private final LocalDateTime timestamp;
     
     /**
-     * Construtor privado - use os métodos estáticos para criar instâncias
+     * Private constructor - use static methods to create instances
      */
     private ApiResponse(boolean success, String code, T data, String message) {
         this.success = success;
@@ -33,44 +33,44 @@ public class ApiResponse<T> {
     }
     
     /**
-     * Cria resposta de sucesso com código, dados e mensagem
+     * Creates success response with code, data and message
      * 
-     * @param code Código da operação (ex: "AUTH_LOGIN_SUCCESS")
-     * @param data Dados a serem retornados
-     * @param message Mensagem de sucesso em inglês (fallback)
-     * @return ApiResponse com success=true
+     * @param code Operation code (e.g., "AUTH_LOGIN_SUCCESS")
+     * @param data Data to be returned
+     * @param message Success message in English (fallback)
+     * @return ApiResponse with success=true
      */
     public static <T> ApiResponse<T> success(String code, T data, String message) {
         return new ApiResponse<>(true, code, data, message);
     }
     
     /**
-     * Cria resposta de sucesso com dados e mensagem (sem código)
+     * Creates success response with data and message (without code)
      * 
-     * @param data Dados a serem retornados
-     * @param message Mensagem de sucesso
-     * @return ApiResponse com success=true
+     * @param data Data to be returned
+     * @param message Success message
+     * @return ApiResponse with success=true
      */
     public static <T> ApiResponse<T> success(T data, String message) {
         return new ApiResponse<>(true, null, data, message);
     }
     
     /**
-     * Cria resposta de sucesso apenas com dados (sem mensagem)
+     * Creates success response with data only (no message)
      * 
-     * @param data Dados a serem retornados
-     * @return ApiResponse com success=true
+     * @param data Data to be returned
+     * @return ApiResponse with success=true
      */
     public static <T> ApiResponse<T> success(T data) {
         return new ApiResponse<>(true, null, data, null);
     }
     
     /**
-     * Cria resposta de sucesso apenas com mensagem (sem dados)
-     * Útil para operações como DELETE que não retornam dados
+     * Creates success response with message only (no data)
+     * Useful for operations like DELETE that don't return data
      * 
-     * @param message Mensagem de sucesso
-     * @return ApiResponse com success=true e data=null
+     * @param message Success message
+     * @return ApiResponse with success=true and data=null
      */
     public static <T> ApiResponse<T> success(String message) {
         return new ApiResponse<>(true, null, null, message);

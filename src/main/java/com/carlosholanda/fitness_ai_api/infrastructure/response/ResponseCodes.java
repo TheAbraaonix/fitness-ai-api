@@ -1,8 +1,8 @@
 package com.carlosholanda.fitness_ai_api.infrastructure.response;
 
 /**
- * Constantes para códigos de resposta da API.
- * Usados para i18n no frontend - o frontend mapeia esses códigos para mensagens traduzidas.
+ * Centralized constants for API response codes.
+ * Used for frontend internationalization (i18n) - frontend maps these codes to localized messages.
  */
 public final class ResponseCodes {
 

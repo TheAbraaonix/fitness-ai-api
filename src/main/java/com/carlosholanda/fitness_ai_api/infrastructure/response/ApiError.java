@@ -7,19 +7,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Wrapper padrão para todas as respostas de erro da API.
- * Retornado pelo GlobalExceptionHandler com status HTTP apropriado.
+ * Standard wrapper for all API error responses.
+ * Returned by GlobalExceptionHandler with appropriate HTTP status.
  */
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiError {
     
-    private final boolean success = false;  // Sempre false em erros
+    private final boolean success = false;  // Always false for errors
     private final ErrorDetails error;
     private final LocalDateTime timestamp;
     
     /**
-     * Construtor privado - use os métodos estáticos
+     * Private constructor - use static methods
      */
     private ApiError(String code, String message, List<ValidationError> details) {
         this.error = new ErrorDetails(code, message, details);
@@ -27,11 +27,11 @@ public class ApiError {
     }
     
     /**
-     * Cria erro com código, mensagem e detalhes de validação
+     * Creates error with code, message and validation details
      * 
-     * @param code Código do erro (ex: "EXERCISE_NOT_FOUND")
-     * @param message Mensagem descritiva do erro
-     * @param details Lista de erros de validação (campos inválidos)
+     * @param code Error code (e.g., "EXERCISE_NOT_FOUND")
+     * @param message Descriptive error message
+     * @param details List of validation errors (invalid fields)
      * @return ApiError
      */
     public static ApiError of(String code, String message, List<ValidationError> details) {
@@ -39,10 +39,10 @@ public class ApiError {
     }
     
     /**
-     * Cria erro simples sem detalhes de validação
+     * Creates simple error without validation details
      * 
-     * @param code Código do erro (ex: "USER_NOT_FOUND")
-     * @param message Mensagem descritiva do erro
+     * @param code Error code (e.g., "USER_NOT_FOUND")
+     * @param message Descriptive error message
      * @return ApiError
      */
     public static ApiError of(String code, String message) {
@@ -50,14 +50,14 @@ public class ApiError {
     }
     
     /**
-     * Detalhes internos do erro
+     * Internal error details
      */
     @Getter
     public static class ErrorDetails {
         private final String code;
         private final String message;
         
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)  // Só aparece se tiver itens
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)  // Only appears if there are items
         private final List<ValidationError> details;
         
         public ErrorDetails(String code, String message, List<ValidationError> details) {
@@ -68,7 +68,7 @@ public class ApiError {
     }
     
     /**
-     * Representa um erro de validação em um campo específico
+     * Represents a validation error on a specific field
      */
     @Getter
     public static class ValidationError {

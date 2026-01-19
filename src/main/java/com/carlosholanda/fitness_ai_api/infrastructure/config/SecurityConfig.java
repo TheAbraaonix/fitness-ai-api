@@ -29,10 +29,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
          http
             .csrf(csrf -> csrf.disable())
-            .cors(cors -> {}) // Usa sua config CORS existente
+            .cors(cors -> {}) // Uses existing CORS config
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // Públicos
+                // Public endpoints
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 
@@ -41,12 +41,12 @@ public class SecurityConfig {
                 .requestMatchers("/v3/api-docs/**", "/swagger-resources/**").permitAll()
                 .requestMatchers("/webjars/**").permitAll()
                 
-                // Demais endpoints requerem autenticação (roles definidas nos controllers)
+                // All other endpoints require authentication (roles defined in controllers)
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        // Para H2 Console funcionar
+        // Enable H2 Console iframe
         http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
