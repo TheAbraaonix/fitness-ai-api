@@ -7,6 +7,8 @@ import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth.CreateUserRequ
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth.LoginRequest;
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth.LoginResponse;
 import com.carlosholanda.fitness_ai_api.application.usecases.AuthUseCases;
+import com.carlosholanda.fitness_ai_api.infrastructure.response.ApiResponse;
+import com.carlosholanda.fitness_ai_api.infrastructure.response.ResponseCodes;
 
 import jakarta.validation.Valid;
 
@@ -26,15 +28,16 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login (@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<ApiResponse<LoginResponse>> login (@Valid @RequestBody LoginRequest request) {
         LoginResponse response = authUseCases.login(request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.success(ResponseCodes.AUTH_LOGIN_SUCCESS, response, "Login successful"));
     }
     
     @PostMapping("/register")
-    public ResponseEntity<LoginResponse> register(@Valid @RequestBody CreateUserRequest request) {
+    public ResponseEntity<ApiResponse<LoginResponse>> register(@Valid @RequestBody CreateUserRequest request) {
         LoginResponse response = authUseCases.register(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(ApiResponse.success(ResponseCodes.AUTH_REGISTER_SUCCESS, response, "User registered successfully"));
     }
     
 }
