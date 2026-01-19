@@ -13,6 +13,7 @@ public final class ResponseCodes {
     // ==================== AUTH ====================
     public static final String AUTH_LOGIN_SUCCESS = "AUTH_LOGIN_SUCCESS";
     public static final String AUTH_REGISTER_SUCCESS = "AUTH_REGISTER_SUCCESS";
+    public static final String AUTH_INVALID_CREDENTIALS = "AUTH_INVALID_CREDENTIALS";
     
     // ==================== USER ====================
     public static final String USER_CREATED = "USER_CREATED";
@@ -31,7 +32,6 @@ public final class ResponseCodes {
     // ==================== ERROR CODES ====================
     public static final String RESOURCE_NOT_FOUND = "RESOURCE_NOT_FOUND";
     public static final String USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
-    public static final String INVALID_CREDENTIALS = "INVALID_CREDENTIALS";
     public static final String INVALID_ARGUMENT = "INVALID_ARGUMENT";
     public static final String VALIDATION_ERROR = "VALIDATION_ERROR";
     public static final String INTERNAL_ERROR = "INTERNAL_ERROR";
