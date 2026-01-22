@@ -1,10 +1,10 @@
 package com.carlosholanda.fitness_ai_api.adapters.outbound.repositories.exercise;
 
 import com.carlosholanda.fitness_ai_api.adapters.outbound.entities.JpaExerciseEntity;
-import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Exercise;
 import com.carlosholanda.fitness_ai_api.domain.exercise.ExerciseRepository;
-import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.Difficulty;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.MuscleGroup;
 import com.carlosholanda.fitness_ai_api.utils.mapper.ExerciseMapper;
 import org.springframework.stereotype.Repository;
 

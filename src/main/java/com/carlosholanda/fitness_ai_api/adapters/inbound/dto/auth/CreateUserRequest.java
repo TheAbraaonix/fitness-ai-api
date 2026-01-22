@@ -1,7 +1,8 @@
 package com.carlosholanda.fitness_ai_api.adapters.inbound.dto.auth;
 
-import com.carlosholanda.fitness_ai_api.domain.user.FitnessGoal;
-import com.carlosholanda.fitness_ai_api.domain.user.FitnessLevel;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.FitnessGoal;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.FitnessLevel;
+
 import jakarta.validation.constraints.*;
 
 public record CreateUserRequest(

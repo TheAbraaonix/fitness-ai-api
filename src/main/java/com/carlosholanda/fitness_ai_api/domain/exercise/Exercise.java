@@ -2,6 +2,9 @@ package com.carlosholanda.fitness_ai_api.domain.exercise;
 
 import java.time.LocalDateTime;
 
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.Difficulty;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.MuscleGroup;
+
 public class Exercise {
     private Long id;
     private String name;

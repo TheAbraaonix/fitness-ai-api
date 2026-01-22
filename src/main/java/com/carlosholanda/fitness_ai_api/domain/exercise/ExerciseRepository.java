@@ -3,6 +3,9 @@ package com.carlosholanda.fitness_ai_api.domain.exercise;
 import java.util.List;
 import java.util.Optional;
 
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.Difficulty;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.MuscleGroup;
+
 public interface ExerciseRepository {
     Exercise save(Exercise exercise);
     Exercise update(Exercise exercise);

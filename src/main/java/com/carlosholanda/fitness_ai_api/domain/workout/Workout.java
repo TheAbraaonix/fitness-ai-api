@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.carlosholanda.fitness_ai_api.domain.workout.enums.WorkoutStatus;
+import com.carlosholanda.fitness_ai_api.domain.workout.enums.WorkoutType;
+
 public class Workout {
 	private Long id;
 	private UUID userId;

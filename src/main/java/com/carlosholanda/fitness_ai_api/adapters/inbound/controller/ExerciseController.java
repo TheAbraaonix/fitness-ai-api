@@ -4,8 +4,9 @@ import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.CreateExer
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.ExerciseResponse;
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.UpdateExerciseRequest;
 import com.carlosholanda.fitness_ai_api.application.usecases.ExerciseUseCases;
-import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
-import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.Difficulty;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.MuscleGroup;
+
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

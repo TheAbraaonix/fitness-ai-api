@@ -1,9 +1,9 @@
 package com.carlosholanda.fitness_ai_api.adapters.outbound.entities;
 
-import com.carlosholanda.fitness_ai_api.domain.user.FitnessGoal;
-import com.carlosholanda.fitness_ai_api.domain.user.FitnessLevel;
 import com.carlosholanda.fitness_ai_api.domain.user.User;
-import com.carlosholanda.fitness_ai_api.domain.user.UserRole;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.FitnessGoal;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.FitnessLevel;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.UserRole;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -3,8 +3,9 @@ package com.carlosholanda.fitness_ai_api.adapters.outbound.entities;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import com.carlosholanda.fitness_ai_api.domain.workout.WorkoutStatus;
-import com.carlosholanda.fitness_ai_api.domain.workout.WorkoutType;
+
+import com.carlosholanda.fitness_ai_api.domain.workout.enums.WorkoutStatus;
+import com.carlosholanda.fitness_ai_api.domain.workout.enums.WorkoutType;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

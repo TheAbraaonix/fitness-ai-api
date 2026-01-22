@@ -4,10 +4,10 @@ import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.CreateExer
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.ExerciseResponse;
 import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.exercise.UpdateExerciseRequest;
 import com.carlosholanda.fitness_ai_api.application.usecases.ExerciseUseCases;
-import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Exercise;
 import com.carlosholanda.fitness_ai_api.domain.exercise.ExerciseRepository;
-import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.Difficulty;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.MuscleGroup;
 import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.exercise.ExerciseNotFoundException;
 import com.carlosholanda.fitness_ai_api.utils.mapper.ExerciseMapper;
 import org.springframework.stereotype.Service;

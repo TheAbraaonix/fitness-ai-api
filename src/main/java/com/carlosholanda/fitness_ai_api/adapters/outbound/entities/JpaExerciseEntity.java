@@ -1,8 +1,9 @@
 package com.carlosholanda.fitness_ai_api.adapters.outbound.entities;
 
-import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Exercise;
-import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.Difficulty;
+import com.carlosholanda.fitness_ai_api.domain.exercise.enums.MuscleGroup;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

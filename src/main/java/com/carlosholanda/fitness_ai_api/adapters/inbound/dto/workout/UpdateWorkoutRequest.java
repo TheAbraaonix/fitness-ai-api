@@ -1,7 +1,8 @@
 package com.carlosholanda.fitness_ai_api.adapters.inbound.dto.workout;
 
-import com.carlosholanda.fitness_ai_api.domain.workout.WorkoutStatus;
-import com.carlosholanda.fitness_ai_api.domain.workout.WorkoutType;
+import com.carlosholanda.fitness_ai_api.domain.workout.enums.WorkoutStatus;
+import com.carlosholanda.fitness_ai_api.domain.workout.enums.WorkoutType;
+
 import jakarta.validation.Valid;
 
 import java.util.List;

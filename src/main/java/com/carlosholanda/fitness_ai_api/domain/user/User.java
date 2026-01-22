@@ -3,6 +3,10 @@ package com.carlosholanda.fitness_ai_api.domain.user;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.carlosholanda.fitness_ai_api.domain.user.enums.FitnessGoal;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.FitnessLevel;
+import com.carlosholanda.fitness_ai_api.domain.user.enums.UserRole;
+
 public class User {
     private UUID id;
 
