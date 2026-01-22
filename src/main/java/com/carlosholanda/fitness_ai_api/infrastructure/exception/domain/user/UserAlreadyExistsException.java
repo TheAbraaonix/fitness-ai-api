@@ -1,4 +1,4 @@
-package com.carlosholanda.fitness_ai_api.infrastructure.exception.domain;
+package com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.user;
 
 public class UserAlreadyExistsException extends RuntimeException {
     

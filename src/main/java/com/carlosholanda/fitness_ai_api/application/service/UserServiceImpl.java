@@ -6,8 +6,8 @@ import com.carlosholanda.fitness_ai_api.adapters.inbound.dto.user.UserResponse;
 import com.carlosholanda.fitness_ai_api.application.usecases.UserUseCases;
 import com.carlosholanda.fitness_ai_api.domain.user.User;
 import com.carlosholanda.fitness_ai_api.domain.user.UserRepository;
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.UserAlreadyExistsException;
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.UserNotFoundException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.user.UserAlreadyExistsException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.user.UserNotFoundException;
 import com.carlosholanda.fitness_ai_api.utils.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 

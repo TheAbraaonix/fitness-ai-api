@@ -29,6 +29,13 @@ public final class ResponseCodes {
     public static final String EXERCISE_RETRIEVED = "EXERCISE_RETRIEVED";
     public static final String EXERCISES_RETRIEVED = "EXERCISES_RETRIEVED";
     
+    // ==================== WORKOUT ====================
+    public static final String WORKOUT_CREATED = "WORKOUT_CREATED";
+    public static final String WORKOUT_UPDATED = "WORKOUT_UPDATED";
+    public static final String WORKOUT_DELETED = "WORKOUT_DELETED";
+    public static final String WORKOUT_RETRIEVED = "WORKOUT_RETRIEVED";
+    public static final String WORKOUTS_RETRIEVED = "WORKOUTS_RETRIEVED";
+    
     // ==================== ERROR CODES ====================
     public static final String RESOURCE_NOT_FOUND = "RESOURCE_NOT_FOUND";
     public static final String USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";

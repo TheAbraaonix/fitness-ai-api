@@ -10,10 +10,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.ExerciseNotFoundException;
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.InvalidCredentialsException;
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.UserAlreadyExistsException;
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.UserNotFoundException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.auth.InvalidCredentialsException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.exercise.ExerciseNotFoundException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.user.UserAlreadyExistsException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.user.UserNotFoundException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.workout.WorkoutNotFoundException;
 import com.carlosholanda.fitness_ai_api.infrastructure.response.ApiError;
 import com.carlosholanda.fitness_ai_api.infrastructure.response.ApiError.ValidationError;
 import com.carlosholanda.fitness_ai_api.infrastructure.response.ResponseCodes;
@@ -21,7 +22,7 @@ import com.carlosholanda.fitness_ai_api.infrastructure.response.ResponseCodes;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({UserNotFoundException.class, ExerciseNotFoundException.class})
+    @ExceptionHandler({UserNotFoundException.class, ExerciseNotFoundException.class, WorkoutNotFoundException.class})
     public ResponseEntity<ApiError> handleNotFoundException(RuntimeException ex) {
         ApiError error = ApiError.of(ResponseCodes.RESOURCE_NOT_FOUND, ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);

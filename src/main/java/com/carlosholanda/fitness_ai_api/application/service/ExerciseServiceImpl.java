@@ -8,7 +8,7 @@ import com.carlosholanda.fitness_ai_api.domain.exercise.Difficulty;
 import com.carlosholanda.fitness_ai_api.domain.exercise.Exercise;
 import com.carlosholanda.fitness_ai_api.domain.exercise.ExerciseRepository;
 import com.carlosholanda.fitness_ai_api.domain.exercise.MuscleGroup;
-import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.ExerciseNotFoundException;
+import com.carlosholanda.fitness_ai_api.infrastructure.exception.domain.exercise.ExerciseNotFoundException;
 import com.carlosholanda.fitness_ai_api.utils.mapper.ExerciseMapper;
 import org.springframework.stereotype.Service;
 

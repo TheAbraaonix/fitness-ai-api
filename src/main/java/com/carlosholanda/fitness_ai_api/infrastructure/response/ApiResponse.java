@@ -64,6 +64,16 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> success(T data) {
         return new ApiResponse<>(true, null, data, null);
     }
+
+    /**
+     * Creates success response with code and message only (no data)
+     * @param code Operation code (e.g., "AUTH_LOGIN_SUCCESS")
+     * @param message Success message
+     * @return
+     */
+    public static <T> ApiResponse<T> success(String code, String message) {
+        return new ApiResponse<>(true, code, null, message);
+    }
     
     /**
      * Creates success response with message only (no data)
